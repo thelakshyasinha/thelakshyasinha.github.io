@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lakshya Sinha</title>
+<meta name="description" content="Third-year computer science student in Chennai. Built Pulse at Deloitte — a daily regulatory intelligence pipeline covering nine financial regulators.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#E9EBE6;
+    --paper-2:#DFE2DC;
+    --ink:#18211E;
+    --ink-soft:#4A5551;
+    --petrol:#22403E;
+    --stamp:#A63D2F;
+    --ochre:#B07A33;
+    --rule:#C2C7C0;
+    --band:#22403E;
+    --band-text:#DDE3DD;
+    --band-rule:#3A5A57;
+    --focus:#A63D2F;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#141A19;
+      --paper-2:#1C2422;
+      --ink:#E4E8E2;
+      --ink-soft:#9AA6A1;
+      --petrol:#9FC4BC;
+      --stamp:#D97361;
+      --ochre:#D2A05C;
+      --rule:#2C3735;
+      --band:#0E1413;
+      --band-text:#DDE3DD;
+      --band-rule:#2C3735;
+      --focus:#D97361;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#141A19;
+    --paper-2:#1C2422;
+    --ink:#E4E8E2;
+    --ink-soft:#9AA6A1;
+    --petrol:#9FC4BC;
+    --stamp:#D97361;
+    --ochre:#D2A05C;
+    --rule:#2C3735;
+    --band:#0E1413;
+    --band-text:#DDE3DD;
+    --band-rule:#2C3735;
+    --focus:#D97361;
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--stamp);color:#fff;}
+  a{color:inherit;}
+  a:focus-visible,button:focus-visible{
+    outline:2px solid var(--focus);
+    outline-offset:3px;
+  }
+
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+
+  /* ---------- masthead ---------- */
+  .top{padding:48px 0 0;}
+  .top-row{
+    display:flex;justify-content:space-between;align-items:baseline;
+    gap:16px;flex-wrap:wrap;
+    border-bottom:1px solid var(--rule);padding-bottom:12px;
+  }
+  .who{font-size:.82rem;letter-spacing:.02em;color:var(--ink-soft);}
+  .theme-btn{
+    font:inherit;font-size:.78rem;color:var(--ink-soft);
+    background:none;border:1px solid var(--rule);border-radius:2px;
+    padding:3px 10px;cursor:pointer;
+  }
+  .theme-btn:hover{color:var(--ink);border-color:var(--ink-soft);}
+
+  h1{
+    font-family:Fraunces,Georgia,serif;
+    font-weight:600;
+    font-size:clamp(2.6rem,7.5vw,5rem);
+    line-height:1.02;
+    letter-spacing:-.018em;
+    margin:34px 0 0;
+    max-width:16ch;
+  }
+  .lede{
+    font-size:clamp(1rem,2vw,1.12rem);
+    color:var(--ink-soft);
+    max-width:58ch;
+    margin:22px 0 40px;
+  }
+  .lede strong{color:var(--ink);font-weight:500;}
+
+  /* ---------- jurisdiction band ---------- */
+  .band{
+    background:var(--band);
+    color:var(--band-text);
+    padding:26px 0 30px;
+    margin-bottom:8px;
+  }
+  .band-head{
+    display:flex;justify-content:space-between;align-items:baseline;
+    gap:14px;flex-wrap:wrap;
+    font-size:.8rem;color:#9DB5B0;
+    margin-bottom:18px;
+  }
+  .band-head .note{max-width:52ch;}
+  .live{display:inline-flex;align-items:center;gap:7px;font-family:"IBM Plex Mono",monospace;}
+  .dot{
+    width:7px;height:7px;border-radius:50%;
+    background:var(--stamp);
+    box-shadow:0 0 0 0 rgba(166,61,47,.6);
+    animation:ping 2.6s ease-out infinite;
+  }
+  @keyframes ping{
+    0%{box-shadow:0 0 0 0 rgba(166,61,47,.55);}
+    70%{box-shadow:0 0 0 7px rgba(166,61,47,0);}
+    100%{box-shadow:0 0 0 0 rgba(166,61,47,0);}
+  }
+  .grid9{
+    display:grid;
+    grid-template-columns:repeat(9,1fr);
+    border-left:1px solid var(--band-rule);
+  }
+  .jur{
+    border-right:1px solid var(--band-rule);
+    padding:12px 10px 4px;
+    opacity:0;
+    transform:translateY(6px);
+    animation:rise .5s ease forwards;
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+  .jur .code{
+    font-family:Fraunces,Georgia,serif;
+    font-size:1.05rem;font-weight:600;letter-spacing:.01em;
+    display:block;
+  }
+  .jur .city{
+    font-size:.7rem;color:#8FA8A3;display:block;margin-top:1px;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  }
+  .jur .clock{
+    font-family:"IBM Plex Mono",monospace;
+    font-size:.86rem;margin-top:9px;display:block;
+    font-variant-numeric:tabular-nums;
+  }
+  .jur.open .clock{color:#EBB98A;}
+  .jur .state{
+    font-size:.64rem;letter-spacing:.06em;color:#7C948F;
+    display:block;margin-top:2px;
+  }
+  .jur.open .state{color:var(--stamp);}
+
+  /* ---------- sections ---------- */
+  section{padding:64px 0;}
+  .sec-title{
+    font-family:Fraunces,Georgia,serif;
+    font-weight:600;font-size:clamp(1.5rem,3.4vw,2.1rem);
+    letter-spacing:-.01em;margin:0 0 6px;
+  }
+  .sec-sub{color:var(--ink-soft);font-size:.95rem;margin:0 0 34px;max-width:62ch;}
+
+  /* pulse feature */
+  .pulse{border-top:2px solid var(--ink);padding-top:26px;}
+  .pulse-meta{
+    display:flex;gap:10px 22px;flex-wrap:wrap;
+    font-size:.82rem;color:var(--ink-soft);margin-bottom:26px;
+  }
+  .pulse-body{
+    display:grid;grid-template-columns:1.25fr 1fr;gap:46px;align-items:start;
+  }
+  .pulse-body p{margin:0 0 16px;max-width:62ch;}
+  .pull{
+    font-family:Fraunces,Georgia,serif;
+    font-size:1.32rem;line-height:1.35;
+    color:var(--petrol);
+    border-left:3px solid var(--stamp);
+    padding-left:18px;margin:26px 0 0;
+  }
+  .facts{margin:0;}
+  .facts dt{
+    font-size:.74rem;color:var(--ink-soft);letter-spacing:.03em;
+    padding-top:12px;border-top:1px solid var(--rule);
+  }
+  .facts dd{margin:3px 0 14px;font-size:.93rem;}
+
+  /* work list */
+  .work{border-top:1px solid var(--rule);}
+  .item{
+    display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.45fr);
+    gap:14px 40px;
+    padding:26px 0;border-bottom:1px solid var(--rule);
+  }
+  .item h3{
+    font-family:Fraunces,Georgia,serif;
+    font-weight:600;font-size:1.22rem;margin:0 0 4px;line-height:1.25;
+  }
+  .item .tag{font-size:.78rem;color:var(--ink-soft);}
+  .item p{margin:0 0 10px;font-size:.95rem;color:var(--ink-soft);max-width:60ch;}
+  .item p:last-child{margin-bottom:0;}
+  .item .mark{
+    color:var(--stamp);font-weight:600;
+  }
+  .stack{
+    display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;
+  }
+  .stack span{
+    font-size:.74rem;color:var(--ink-soft);
+    border:1px solid var(--rule);border-radius:2px;
+    padding:2px 8px;
+  }
+
+  /* toolkit */
+  .kit{display:grid;grid-template-columns:repeat(2,1fr);gap:0 46px;}
+  .kit dt{
+    font-size:.76rem;color:var(--ink-soft);
+    border-top:1px solid var(--rule);padding-top:11px;
+  }
+  .kit dd{margin:3px 0 18px;font-size:.95rem;}
+
+  /* community */
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:46px;}
+  .two ul{margin:0;padding-left:1.05em;}
+  .two li{margin-bottom:9px;font-size:.95rem;color:var(--ink-soft);}
+  .two li strong{color:var(--ink);font-weight:500;}
+
+  /* contact */
+  .contact{
+    background:var(--band);color:var(--band-text);
+    padding:58px 0 62px;
+  }
+  .contact h2{
+    font-family:Fraunces,Georgia,serif;font-weight:600;
+    font-size:clamp(1.7rem,4vw,2.5rem);margin:0 0 10px;
+  }
+  .contact p{color:#9DB5B0;max-width:50ch;margin:0 0 30px;}
+  .links{display:flex;flex-wrap:wrap;gap:12px 30px;}
+  .links a{
+    font-size:1rem;text-decoration:none;
+    border-bottom:1px solid #4A6B67;padding-bottom:2px;
+  }
+  .links a:hover{border-color:var(--band-text);}
+  .foot{
+    font-size:.76rem;color:#6F8A85;margin-top:38px;
+    border-top:1px solid var(--band-rule);padding-top:16px;
+  }
+
+  @media (max-width:900px){
+    .pulse-body{grid-template-columns:1fr;gap:30px;}
+    .two{grid-template-columns:1fr;gap:30px;}
+    .item{grid-template-columns:1fr;gap:8px;}
+  }
+  @media (max-width:760px){
+    .grid9{grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--band-rule);}
+    .jur{border-bottom:1px solid var(--band-rule);}
+    .jur:nth-last-child(-n+3){border-bottom:none;}
+  }
+  @media (max-width:560px){
+    .wrap{padding:0 20px;}
+    body{font-size:16px;}
+    section{padding:48px 0;}
+    .kit{grid-template-columns:1fr;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none !important;transition:none !important;}
+    .jur{opacity:1;transform:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="top-row">
+      <span class="who">Lakshya Sinha — Chennai, India · open to relocate</span>
+      <button class="theme-btn" id="themeBtn" type="button">Switch theme</button>
+    </div>
+    <h1>I build systems that keep running after I leave.</h1>
+    <p class="lede">Third-year computer science student at SRM IST. Last summer at <strong>Deloitte</strong> I built <strong>Pulse</strong> — a pipeline that checks nine financial regulators every morning and hands managers a finished report before anyone asks for it. It shipped with tests, a quality gate, and a runbook, so the team kept running it after my internship ended.</p>
+  </div>
+</header>
+
+<div class="band">
+  <div class="wrap">
+    <div class="band-head">
+      <span class="note">The nine regulators Pulse covers, in the order their working day opens. Local time now:</span>
+      <span class="live"><span class="dot" aria-hidden="true"></span><span id="utc">—</span> UTC</span>
+    </div>
+    <div class="grid9" id="grid9"></div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="pulse">
+      <h2 class="sec-title">Pulse</h2>
+      <div class="pulse-meta">
+        <span>Deloitte India · Strategy, Risk &amp; Transactions</span>
+        <span>Jun – Aug 2026</span>
+        <span>Built solo</span>
+      </div>
+      <div class="pulse-body">
+        <div>
+          <p>Compliance teams need to know what changed at every regulator they answer to, every single day. Doing that by hand means nine websites, a pile of PDFs in different formats, and an analyst's morning gone before the real work starts.</p>
+          <p>Pulse collects the previous day's public updates from SEBI, MAS, SFC, HKMA, ASIC, FCA, FINRA, SEC and CFTC — typically 50 or more on a working day. It parses the documents behind each listing, pulls out entities and amounts, converts local currency to USD, runs its own quality checks, and writes an Excel pack with a dashboard, the detailed rows, and a source link on every row so nothing has to be taken on trust. Work that used to take a full morning by hand now runs before anyone sits down.</p>
+          <p class="pull">A quiet day is a real answer. Zero rows means nothing happened — not that the run failed.</p>
+          <p>The hardest part wasn't the scraping. It was pinning down the logic: deciding what counts as an update worth reporting when nine regulators publish in nine different shapes, and making that judgement hold consistently enough to trust unattended. Two months, start to finish.</p>
+        </div>
+        <dl class="facts">
+          <dt>Regulators covered</dt>
+          <dd>Nine, across six jurisdictions and five time zones</dd>
+          <dt>Built with</dt>
+          <dd>Python, Selenium, BeautifulSoup, pdfplumber / PyPDF2, pandas, openpyxl, smtplib</dd>
+          <dt>Shipped alongside it</dt>
+          <dd>Regression tests, a pack quality gate, a runbook, and a sample deliverable for handover</dd>
+          <dt>Scope</dt>
+          <dd>Owned end to end, solo, under a reporting manager</dd>
+          <dt>Where it went</dt>
+          <dd>Well received on handover — the team raised showing it to the London office, and it's under consideration for Deloitte's internal dashboard</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="sec-title">Other things I've built</h2>
+    <p class="sec-sub">Hackathon prototypes and coursework, most of them with a small team.</p>
+    <div class="work">
+
+      <article class="item">
+        <div>
+          <h3>Supplier trust and verification</h3>
+          <span class="tag">Razorpay AI Buildathon · built solo · 2026</span>
+        </div>
+        <div>
+          <p>A check you run on a supplier before you decide to trust them with an order or a payment. Six independent rules score an unknown supplier, and each one contributes to a verdict the user can actually interrogate — the point is that every score comes with its reasoning attached, not just a number.</p>
+          <p>The scoring core is deterministic by design: the same supplier gets the same score every time, which matters when someone is going to act on the result. A dashboard on top shows how each rule landed.</p>
+          <div class="stack"><span>Python</span><span>React 18</span><span>Vite</span><span>Rules engine</span></div>
+          <p style="margin-top:12px;"><a href="https://github.com/thelakshyasinha/supplier-trust-verification" target="_blank" rel="noopener" style="color:var(--stamp);text-decoration:none;border-bottom:1px solid currentColor;">See the code</a></p>
+        </div>
+      </article>
+
+      <article class="item">
+        <div>
+          <h3>Visual Crime Analysis</h3>
+          <span class="tag">SRM Hackathon 10.0 · team of four · 2026</span>
+        </div>
+        <div>
+          <p>A computer-vision prototype that watches video feeds and flags weapons, fighting, and other aggressive physical activity in near real time. I owned the research and the solution design, and it ran live in the demo.</p>
+          <p><span class="mark">Third place.</span> The demo led to a paid internship offer from Student Forged Technologies, which I turned down — I'd already committed to Deloitte.</p>
+          <div class="stack"><span>OpenCV</span><span>YOLOv5 / v8</span><span>PyTorch</span></div>
+        </div>
+      </article>
+
+      <article class="item">
+        <div>
+          <h3>Bus booking system</h3>
+          <span class="tag">Database coursework · pair project</span>
+        </div>
+        <div>
+          <p>Designed the relational schema and wrote the full query set for a ticket booking workflow — routes, seats and bookings, from schema creation through every CRUD path.</p>
+          <div class="stack"><span>MySQL</span><span>SQL</span></div>
+        </div>
+      </article>
+
+      <article class="item">
+        <div>
+          <h3>Stock market simulator</h3>
+          <span class="tag">Team of four</span>
+        </div>
+        <div>
+          <p>A virtual trading sandbox with randomised price movement and plotted trend charts. Users place buy and sell orders in play money, hold a portfolio across several stocks, and watch its value move — the whole practice loop, none of the risk.</p>
+          <div class="stack"><span>Python</span><span>matplotlib</span></div>
+        </div>
+      </article>
+
+      <article class="item">
+        <div>
+          <h3>Think for Bharat</h3>
+          <span class="tag">National ideathon · <span class="mark">top 10 of ~2,000 teams</span></span>
+        </div>
+        <div>
+          <p>A pitch for using historical government data to estimate how public investment turns into on-ground impact. A dashboard concept and a deck — an ideation piece, not a running system.</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="sec-title">What I work with</h2>
+    <p class="sec-sub">Strongest in Python and SQL. Comfortable picking up whatever a problem needs.</p>
+    <dl class="kit">
+      <dt>Languages</dt>
+      <dd>Python, SQL — plus self-taught basics in Java, C++, and HTML/CSS/JavaScript</dd>
+      <dt>Automation and extraction</dt>
+      <dd>Selenium, BeautifulSoup, pdfplumber, PyPDF2, regex, openpyxl, smtplib</dd>
+      <dt>Data and delivery</dt>
+      <dd>pandas, NumPy, MySQL, Flask, Excel, PowerPoint</dd>
+      <dt>Computer vision and ML</dt>
+      <dd>OpenCV, YOLOv5/v8, PyTorch, scikit-learn, TensorFlow</dd>
+    </dl>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="sec-title">Outside the code</h2>
+    <div class="two">
+      <div>
+        <h3 class="tag" style="font-family:Fraunces,Georgia,serif;font-size:1.05rem;font-weight:600;margin:0 0 12px;color:var(--ink);">Qwiklabs Developers Club</h3>
+        <ul>
+          <li><strong>Secretary</strong> since August 2026 of a Google Cloud–affiliated developer community, 500+ members. Runs events start to finish, technical and logistical alike.</li>
+          <li>On the core team that ran <strong>HackRush</strong>, <strong>QwikDev Start</strong> and <strong>Qwik Innovate</strong> — 800+ participants across them.</li>
+          <li>Closed event sponsorships with <strong>Hack2Skill</strong> and <strong>Dot XYZ</strong>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="tag" style="font-family:Fraunces,Georgia,serif;font-size:1.05rem;font-weight:600;margin:0 0 12px;color:var(--ink);">Recognition</h3>
+        <ul>
+          <li><strong>Third place</strong>, SRM Hackathon 10.0 (2026).</li>
+          <li><strong>Second runner-up</strong>, CodePVP competitive coding contest (2026).</li>
+          <li><strong>Top 10 of ~2,000 teams</strong>, Think for Bharat national ideathon.</li>
+          <li>Participant, IEEE Ideathon 2.0 (2024).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="contact">
+  <div class="wrap">
+    <h2>Looking for my next build.</h2>
+    <p>Internship or graduate role, anywhere — I'm in Chennai and happy to relocate. Easiest to reach by email.</p>
+    <div class="links">
+      <a href="mailto:lakshyaoffice18@gmail.com">lakshyaoffice18@gmail.com</a>
+      <a href="tel:+918810900200">+91 88109 00200</a>
+      <a href="https://linkedin.com/in/lakshya-sinha-6a7161404" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/thelakshyasinha" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <div class="foot">B.Tech Computer Science &amp; Engineering (AI &amp; ML), SRM Institute of Science and Technology, Kattankulathur · 2024–2028 · CGPA 8.0/10</div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var JUR = [
+    {code:"ASIC",  city:"Sydney",     tz:"Australia/Sydney"},
+    {code:"SFC",   city:"Hong Kong",  tz:"Asia/Hong_Kong"},
+    {code:"HKMA",  city:"Hong Kong",  tz:"Asia/Hong_Kong"},
+    {code:"MAS",   city:"Singapore",  tz:"Asia/Singapore"},
+    {code:"SEBI",  city:"Mumbai",     tz:"Asia/Kolkata"},
+    {code:"FCA",   city:"London",     tz:"Europe/London"},
+    {code:"SEC",   city:"Washington", tz:"America/New_York"},
+    {code:"FINRA", city:"Washington", tz:"America/New_York"},
+    {code:"CFTC",  city:"Washington", tz:"America/New_York"}
+  ];
+
+  var grid = document.getElementById("grid9");
+  var nodes = [];
+
+  JUR.forEach(function(j, i){
+    var el = document.createElement("div");
+    el.className = "jur";
+    el.style.animationDelay = (i * 55) + "ms";
+    el.innerHTML =
+      '<span class="code">' + j.code + '</span>' +
+      '<span class="city">' + j.city + '</span>' +
+      '<span class="clock">--:--</span>' +
+      '<span class="state">&nbsp;</span>';
+    grid.appendChild(el);
+    nodes.push({cfg:j, el:el,
+      clock:el.querySelector(".clock"),
+      state:el.querySelector(".state")});
+  });
+
+  function parts(tz, date){
+    try{
+      var f = new Intl.DateTimeFormat("en-GB", {
+        timeZone: tz, hour:"2-digit", minute:"2-digit",
+        weekday:"short", hour12:false
+      });
+      var out = {};
+      f.formatToParts(date).forEach(function(p){ out[p.type] = p.value; });
+      return out;
+    }catch(e){ return null; }
+  }
+
+  function tick(){
+    var now = new Date();
+
+    nodes.forEach(function(n){
+      var p = parts(n.cfg.tz, now);
+      if(!p){ n.clock.textContent = "--:--"; return; }
+      n.clock.textContent = p.hour + ":" + p.minute;
+
+      var h = parseInt(p.hour, 10);
+      var weekend = (p.weekday === "Sat" || p.weekday === "Sun");
+      var open = !weekend && h >= 9 && h < 17;
+
+      n.el.classList.toggle("open", open);
+      n.state.textContent = weekend ? "closed" : (open ? "open" : "closed");
+    });
+
+    var u = parts("UTC", now);
+    document.getElementById("utc").textContent = u ? (u.hour + ":" + u.minute) : "--:--";
+  }
+
+  tick();
+  setInterval(tick, 20000);
+
+  // theme toggle
+  var btn = document.getElementById("themeBtn");
+  var root = document.documentElement;
+  btn.addEventListener("click", function(){
+    var dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    var cur = root.getAttribute("data-theme") || (dark ? "dark" : "light");
+    root.setAttribute("data-theme", cur === "dark" ? "light" : "dark");
+  });
+})();
+</script>
+</body>
+</html>
